@@ -12,9 +12,9 @@ export default class Webhook {
 		this.token = token;
 		this.url = url;
 		this.commands = {
-			default: () => new Promise<Response>(() => JSONResponse({ error: 'Invalid command' }, 400)),
+			default: new Promise<Response>(() => JSONResponse({ error: 'Invalid command' }, 400)),
 		};
 	}
 
-	process = async (url: URL): Promise<Response> => this.commands[url.searchParams.get('command') ?? '']?.() ?? this.commands.default;
+	process = async (url: URL): Promise<Response> => this.commands[url.searchParams.get('command') ?? ''] ?? this.commands.default;
 }

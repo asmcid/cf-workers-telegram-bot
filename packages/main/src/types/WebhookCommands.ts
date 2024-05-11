@@ -1,3 +1,3 @@
 export default class WebhookCommands {
-	[key: string]: () => Promise<Response>;
+	[key: string]: Promise<Response>;
 }
